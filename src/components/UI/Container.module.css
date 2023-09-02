@@ -1,0 +1,11 @@
+.container {
+  min-width: 60vw;
+  min-height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  background-color: #50514f;
+  border: 5px solid #59ffa0;
+  border-radius: 10px;
+}
