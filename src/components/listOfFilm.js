@@ -7,9 +7,10 @@ const ListOfFilm = (props) => {
       <ul>
         {props.filmList.map((film) => {
           return (
-            <li key={film.episode__id}>
+            <li key={film.id}>
               <h2>{film.title}</h2>
-              <div>{film.opening_crawl}</div>
+              <h4>{film.releaseDate}</h4>
+              <div>{film.openingText}</div>
             </li>
           );
         })}
