@@ -1,36 +1,26 @@
 import Header from './layout/Header';
 import classes from './Film.module.css';
+import { useState } from 'react';
 import ListOfFilm from './listOfFilm';
 import Container from './UI/Container';
 
-const DUMMY_FILM = [
-  {
-    id: 1,
-    name: 'Starwars 1',
-    description: 'lalamalmalala',
-  },
-  {
-    id: 2,
-    name: 'Starwars 2',
-    description: 'lalamalmalalajjglwhweeoiovnwonv',
-  },
-  {
-    id: 3,
-    name: 'Starwars 3',
-    description: 'lalamalmalalaasdfasdvdsdfd',
-  },
-];
-
 const Film = (props) => {
+  const [movies, setMovies] = useState([]);
+  const fetchMoviesHandler = () => {
+    fetch('https://swapi.dev/api/films/')
+      .then((response) => response.json())
+      .then((data) => setMovies(data.results));
+  };
   return (
     <div>
       <Header />
       <main>
         <Container>
-          <button>Get Movies</button>
+          <button onClick={fetchMoviesHandler}>Get Movies</button>
         </Container>
       </main>
-      <ListOfFilm filmList={DUMMY_FILM} />
+      {movies.length === 0 && <h1>Click get movies button</h1>}
+      {!(movies.length === 0) && <ListOfFilm filmList={movies} />}
     </div>
   );
 };
